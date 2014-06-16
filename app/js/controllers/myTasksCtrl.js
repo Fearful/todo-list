@@ -1,6 +1,25 @@
 'use strict';
 
-app.controller('myTasksCtrl', function($scope, todoService, $location) {
+function myTaskCtrl($scope) {
+
+    $scope.tareas = [{
+        id: 1,
+        texto: 'Nico',
+        hecho: true
+    },
+        {
+            id: 2,
+            texto: 'Fede',
+            hecho: false
+        },
+        {
+            id:3,
+            texto: 'hola que tal...',
+            hecho: true
+        }
+    ];
+
+    var cont = myTasks.length;
 
     var msgAlert = function(msg, visibilidad, estado){
         $scope.msgAlerta = msg;
@@ -9,17 +28,7 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
     }
 
 
-    //get all elements
-    $scope.getAll = function() {
-        todoService.getAll()
-            .success(function (data, status, headers, config) {
-                $scope.tareas = data;
-                numEliminar();
-            })
-            .error(function(data, status, headers, config) {
-                alert(current);
-            });
-    }
+
 
     $scope.restantes = function () {
         var cuenta = 0;
@@ -38,10 +47,6 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
 
     // Call to blogService.create()
     $scope.addTask = function() {
-        var task = {
-            texto : $scope.textoNuevaTarea,
-            hecho : false
-        };
 
         //debugger;
         if($scope.textoNuevaTarea == "" || $scope.textoNuevaTarea == undefined) {
@@ -49,42 +54,42 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             msgAlert("Debe ingresar la tarea", true, false)
             return;
         }
-        todoService.create(task)
-            .success(function (current, status, headers, config) {
-                $scope.getAll();
-                $scope.textoNuevaTarea = "";
-                msgAlert("Tarea agreagada", true, true) ;
-            })
-            .error(function (current, status, headers, config) {
-                alert(current);
+
+        else{
+            $scope.tareas.push({
+                id : ++cont,
+                texto : $scope.textoNuevaTarea,
+                hecho : false
             });
+            $scope.newTask = '';
+        }
     };
 
-    $scope.seleccion = function(task){
-        msgAlert("", false, false);
-        todoService.seleccion(task.id)
-        .success(function () {
-                $scope.getAll();
-            })
-                .error(function(current, status, headers, config) {
-                    alert(current);
-                });
-    }
-
-    $scope.delSelectedTasksC = function(){
-        if($scope.cuentaEliminar == 0){
-            msgAlert("Debe seleccionar la tarea a elminar", true, false);
-            return;
-        }
-        todoService.delSelectedTasks()
-            .success(function(){
-                msgAlert("Tarea eliminada", true, true);
-                $scope.getAll();
-            })
-            .error(function(current){
-                alert(current)
-            });
-    }
+//    $scope.seleccion = function(task){
+//        msgAlert("", false, false);
+//        todoService.seleccion(task.id)
+//        .success(function () {
+//                $scope.getAll();
+//            })
+//                .error(function(current, status, headers, config) {
+//                    alert(current);
+//                });
+//    }
+//
+//    $scope.delSelectedTasksC = function(){
+//        if($scope.cuentaEliminar == 0){
+//            msgAlert("Debe seleccionar la tarea a elminar", true, false);
+//            return;
+//        }
+//        todoService.delSelectedTasks()
+//            .success(function(){
+//                msgAlert("Tarea eliminada", true, true);
+//                $scope.getAll();
+//            })
+//            .error(function(current){
+//                alert(current)
+//            });
+//    }
 
     $scope.verificaTexto = function(){
         if($scope.textoNuevaTarea != "" || $scope.textoNuevaTarea != undefined) {
@@ -93,9 +98,12 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
         }
     }
 
+    $scope.eliminarTask = function(task){
+        $scope.current;
+
+    }
 
 
 
     //call this method at first!
-    $scope.getAll();
-});
+};

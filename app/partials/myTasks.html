@@ -1,10 +1,10 @@
 <!-- My posts  -->
 
 <h1 class="tituloList">Lista de Tareas</h1>
-<div class="separador">
+<div class="separador" ng-controller="myTaskCtrl">
     <span class="numRestante">{{restantes()}} tarea/s restantes de {{tareas.length}}</span>
     <span class="alertaLbl-{{msgVisible}} success-{{styleAgregado}}" >{{msgAlerta}}</span>
-        <button ng-click="delSelectedTasksC()" class="btn btn-default btn-danger btDelete">DELETE
+        <button class="btn btn-default btn-danger btDelete">DELETE
     <span class="btEliminar">{{cuentaEliminar}}</span></button>
 </div>
 <ul class="unstyled">
@@ -13,7 +13,7 @@
             <div class="col-lg-6 ancho-total">
                 <div class="input-group">
                       <span class="input-group-addon">
-                        <input type="checkbox" ng-change="seleccion(tarea)" ng-model="tarea.hecho">
+                        <input type="checkbox"  ng-model="tarea.hecho">
                       </span>
                     <span type="text" class="form-control hecho-{{tarea.hecho}}">{{tarea.texto}}</span>
                 </div>
