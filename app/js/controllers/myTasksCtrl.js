@@ -47,7 +47,6 @@ function myTasksCtrl($scope) {
             msgAlert("Debe seleccionar la tarea a elminar", true, false);
             return;
         }
-        debugger;
         angular.forEach($scope.tareas, function (t) {
             if (t.hecho == true) {
                 var index = $scope.tareas.indexOf(t);
@@ -56,24 +55,24 @@ function myTasksCtrl($scope) {
         });
         numEliminar();
         msgAlert("Tarea eliminada", true, true);
-    }
+    };
 
 
     // Call to blogService.create()
     $scope.addTask = function () {
 
-        //debugger;
+
         if ($scope.textoNuevaTarea == "" || $scope.textoNuevaTarea == undefined) {
             $scope.vacio = true;
             msgAlert("Debe ingresar la tarea", true, false);
             return;
         } else {
             $scope.tareas.push({
-                id: ++cont,
                 texto: $scope.textoNuevaTarea,
                 hecho: false
             });
-            $scope.newTask = '';
+            msgAlert("Tarea agregada", true, true)
+            $scope.textoNuevaTarea = '';
         }
     };
 
