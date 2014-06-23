@@ -1,85 +1,83 @@
 function myTasksCtrl($scope) {
 
-    $scope.tareas = [{
+    $scope.tasks = [{
             id: 1,
-            texto: 'Nico',
-            hecho: true
+            text: 'Nico',
+            done: true
     },
         {
             id: 2,
-            texto: 'Fede',
-            hecho: false
+            text: 'Fede',
+            done: false
         },
         {
             id: 3,
-            texto: 'hola que tal...',
-            hecho: true
+            text: 'hola que tal...',
+            done: true
         }
     ];
 
-    $scope.cont = $scope.tareas.length;
+    $scope.cont = $scope.tasks.length;
 
 
     var msgAlert = function (msg, visibilidad, estado) {
-        $scope.msgAlerta = msg;
+        $scope.msgAlert = msg;
         $scope.msgVisible = visibilidad;
-        $scope.styleAgregado = estado;
+        $scope.styleAdded = estado;
     }
 
-    $scope.restantes = function () {
-        var cuenta = 0;
-        angular.forEach($scope.tareas, function (tarea) {
-            cuenta += tarea.hecho ? 0 : 1;
+    $scope.remaining = function () {
+        var count = 0;
+        angular.forEach($scope.tasks, function (task) {
+            count += task.hecho ? 0 : 1;
         });
-        numEliminar();
-        return cuenta;
+        numDone();
+        return count;
     };
 
-    var numEliminar = function () {
-        $scope.cuentaEliminar = 0;
-        angular.forEach($scope.tareas, function (t) {
-            $scope.cuentaEliminar += t.hecho ? 1 : 0;
+    var numDone = function () {
+        $scope.countDelete = 0;
+        angular.forEach($scope.tasks, function (t) {
+            $scope.countDelete += t.done ? 1 : 0;
         });
     };
 
     $scope.delSelectedTasksC = function () {
-        if ($scope.cuentaEliminar == 0) {
-            msgAlert("Debe seleccionar la tarea a elminar", true, false);
+        if ($scope.countDelete == 0) {
+            msgAlert("You must select the task to delete", true, false);
             return;
         }
-        angular.forEach($scope.tareas, function (t) {
-            if (t.hecho == true) {
-                var index = $scope.tareas.indexOf(t);
-                $scope.tareas.splice(index, 1);
+        angular.forEach($scope.tasks, function (t) {
+            if (t.done == true) {
+                var index = $scope.tasks.indexOf(t);
+                $scope.tasks.splice(index, 1);
             }
         });
-        numEliminar();
-        msgAlert("Tarea eliminada", true, true);
+        numDone();
+        msgAlert("Deleted task", true, true);
     };
 
 
     // Call to blogService.create()
     $scope.addTask = function () {
-
-
-        if ($scope.textoNuevaTarea == "" || $scope.textoNuevaTarea == undefined) {
-            $scope.vacio = true;
-            msgAlert("Debe ingresar la tarea", true, false);
+        if ($scope.textNewTask == "" || $scope.textNewTask == undefined) {
+            $scope.empty = true;
+            msgAlert("You must enter a task", true, false);
             return;
         } else {
-            $scope.tareas.push({
-                texto: $scope.textoNuevaTarea,
-                hecho: false
+            $scope.tasks.push({
+                text: $scope.textNewTask,
+                done: false
             });
-            msgAlert("Tarea agregada", true, true)
-            $scope.textoNuevaTarea = '';
+            msgAlert("Task added", true, true)
+            $scope.textNewTask = '';
         }
     };
 
-    $scope.verificaTexto = function () {
-        if ($scope.textoNuevaTarea != "" || $scope.textoNuevaTarea != undefined) {
+    $scope.textVerify = function () {
+        if ($scope.textNewTask != "" || $scope.textNewTask != undefined) {
             msgAlert("", false, false);
-            $scope.vacio = false;
+            $scope.empty = false;
         }
     }
 }
