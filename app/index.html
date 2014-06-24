@@ -20,7 +20,7 @@
     </ul>
 
     <div class="principalCenter" ng-controller="myTasksCtrl">
-        <h1 class="titleList">Tasks</h1>
+        <h1 class="listTitle">Tasks</h1>
         <div class="sep">
             <span class="numRemaining">{{remaining()}} task/s remaining of {{cont}}</span>
             <span class="alertLbl-{{msgVisible}} success-{{styleAdded}}">{{msgAlert}}</span>
@@ -45,7 +45,7 @@
             <div class="col-lg-6 total-width">
                 <div class="input-group input-group-lg">
                     <input type="text" class="form-control empty-{{empty}}" placeholder="Add an item"
-                           ng-model="textNewTask" ng-change="textVerify()">
+                           ng-model="textNewTask" ng-change="verifyText()">
                     <span class="input-group-btn">
                         <button class="btn btn-default btn-primary" type="submit">Add</button>
                     </span>

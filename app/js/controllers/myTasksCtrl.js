@@ -74,7 +74,7 @@ function myTasksCtrl($scope) {
         }
     };
 
-    $scope.textVerify = function () {
+    $scope.verifyText = function () {
         if ($scope.textNewTask != "" || $scope.textNewTask != undefined) {
             msgAlert("", false, false);
             $scope.empty = false;
