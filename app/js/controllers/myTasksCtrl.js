@@ -29,7 +29,7 @@ function myTasksCtrl($scope) {
     $scope.remaining = function () {
         var count = 0;
         angular.forEach($scope.tasks, function (task) {
-            count += task.hecho ? 0 : 1;
+            count += task.done ? 0 : 1;
         });
         numDone();
         return count;
