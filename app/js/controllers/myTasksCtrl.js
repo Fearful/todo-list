@@ -42,14 +42,14 @@ function myTasksCtrl($scope) {
         });
     };
 
-    $scope.delSelectedTasksC = function () {
+    $scope.delSelectedTasks = function () {
         if ($scope.countDelete == 0) {
             msgAlert("You must select the task to delete", true, false);
             return;
         }
-        angular.forEach($scope.tasks, function (t) {
-            if (t.done == true) {
-                var index = $scope.tasks.indexOf(t);
+        angular.forEach($scope.tasks, function (task) {
+            if (task.done == true) {
+                var index = $scope.tasks.indexOf(task);
                 $scope.tasks.splice(index, 1);
             }
         });
