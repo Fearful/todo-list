@@ -2,28 +2,27 @@ function myTasksCtrl($scope) {
 
     $scope.tasks = [{
             id: 1,
-            text: 'Nico',
+            text: 'Test task 1',
             done: true
     },
         {
             id: 2,
-            text: 'Fede',
+            text: 'Test task 2',
             done: false
         },
         {
             id: 3,
-            text: 'hola que tal...',
+            text: 'Hello world !',
             done: true
         }
     ];
 
     $scope.cont = $scope.tasks.length;
 
-
-    var msgAlert = function (msg, visibilidad, estado) {
+    var msgAlert = function (msg, isVisible, state) {
         $scope.msgAlert = msg;
-        $scope.msgVisible = visibilidad;
-        $scope.styleAdded = estado;
+        $scope.msgVisible = isVisible;
+        $scope.styleAdded = state;
     }
 
     $scope.remaining = function () {
@@ -56,9 +55,7 @@ function myTasksCtrl($scope) {
         numDone();
         msgAlert("Deleted task", true, true);
     };
-
-
-    // Call to blogService.create()
+    
     $scope.addTask = function () {
         if ($scope.textNewTask == "" || $scope.textNewTask == undefined) {
             $scope.empty = true;
