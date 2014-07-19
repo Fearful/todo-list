@@ -63,7 +63,12 @@ function myTasksCtrl($scope) {
             msgAlert("You must enter a task", true, false);
             return;
         } else {
+            var idArray = [];
+            angular.forEach($scope.tasks, function (task) {
+                idArray.push(task.id);
+            });
             $scope.tasks.push({
+                id: Math.max.apply(null, idArray) + 1,
                 text: $scope.textNewTask,
                 done: false
             });
