@@ -50,6 +50,7 @@ function myTasksCtrl($scope) {
             if (task.done == true) {
                 var index = $scope.tasks.indexOf(task);
                 $scope.tasks.splice(index, 1);
+                $scope.cont = --$scope.cont;
             }
         });
         numDone();
@@ -68,6 +69,7 @@ function myTasksCtrl($scope) {
             });
             msgAlert("Task added", true, true)
             $scope.textNewTask = '';
+            $scope.cont = ++$scope.cont;
         }
     };
 
